@@ -32,10 +32,12 @@ spec:
             - 'dev/config/global-defaults-1.yaml'
             - 'dev/config/global-defaults-2.yaml'
             # App valueFiles 
-            - '{{ (index .appValuesFiles 0) }}'            
+            - '{{ (index .appValuesFiles 0) }}'
+#            {{- if gt (len .appValuesFiles) 1 }}
 #            - '{{ (index .appValuesFiles 1) }}'
+#            {{- end }}
             # App-config as valueFile
-            - '{{ (printf "%s/%s" .path .path.filename) }}'
+            - '{{ (printf "dev/config/%s" .path.filename) }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'

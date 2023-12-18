@@ -1,5 +1,5 @@
 appValuesFiles:
-  - /dev/config/account-services.yaml
+  - dev/config/account-services.yaml
 
 some-example-chart:
   image: closeaccount-service:1.2.3

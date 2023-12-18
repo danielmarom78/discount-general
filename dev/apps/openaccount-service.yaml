@@ -1,5 +1,5 @@
 appValuesFiles:
-  - /dev/config/account-services.yaml
+  - dev/config/account-services.yaml
 
 some-example-chart:
   image: openaccount-service:1.2.3
