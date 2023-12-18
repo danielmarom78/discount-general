@@ -1,5 +1,5 @@
 appValuesFiles:
-  - config/money-services.yaml
+  - /dev/config/money-services.yaml
 
 some-example-chart:
   image: send-money-service:9001
