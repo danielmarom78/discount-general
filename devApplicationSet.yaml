@@ -26,9 +26,17 @@ spec:
         path: '/home/dmarom/ws/discount-appset/dev/_chart'
         helm:
           valueFiles:
+            # Env Common valueFiles        
             - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-1.yaml'
             - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-2.yaml'
+            # App valueFiles 
+            - '{{ (index .Values.appValuesFiles 0) }}' 
             - '{{ (index .Values.appValuesFiles 1) }}'
+            - '{{ (index .Values.appValuesFiles 2) }}'
+            - '{{ (index .Values.appValuesFiles 3) }}'
+            - '{{ (index .Values.appValuesFiles 4) }}'
+            # App-config as valueFile
+            - '{{ (printf "%s/%s" path path.filename) }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'
