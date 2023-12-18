@@ -18,10 +18,12 @@ spec:
   #   steps:
   #     maxUpdate: 10%        
   template:
+    metadata:
+      name: '{{path.basename}}'
     spec:
       project: dev
       source:
-        repoURL: https://github.com/danielmarom78/discount-appset.git'
+        repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
         path: '/home/dmarom/ws/discount-appset/dev/_chart'
         helm:
