@@ -19,7 +19,7 @@ spec:
       maxUpdate: 10%        
   template:
     metadata:
-      name: '{{ .path.filename }}'
+      name: '{{ .path.filename | trimSuffix ".yaml" }}'
     spec:
       project: default
       source:
@@ -33,11 +33,17 @@ spec:
             - '../config/global-defaults-2.yaml'
             # App valueFiles 
             - '{{ (index .appValuesFiles 0) }}'
-#            {{- if gt (len .appValuesFiles) 1 }}
-#            - '{{ (index .appValuesFiles 1) }}'
-#            {{- end }}
+            
+            # {{- if gt (len .appValuesFiles) 1 }}
+            # - '{{ (index .appValuesFiles 1) }}'
+            # {{- end }}
+
             # App-config as valueFile
-            - '{{ (printf "dev/config/%s" .path.filename) }}'
+            - '{{ (printf "../apps/%s" .path.filename) }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'
+      syncPolicy:
+        automated: 
+          prune: true
+          selfHeal: true
