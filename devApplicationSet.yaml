@@ -11,27 +11,24 @@ spec:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         revision: HEAD
         files:
-          - path: dev/**/config.yaml
+          - path: dev/apps/*.yaml
   strategy:
-  type: RollingSync
-  rollingSync:
-    steps:
-      maxUpdate: 10%        
+  # type: RollingSync
+  # rollingSync:
+  #   steps:
+  #     maxUpdate: 10%        
   template:
     spec:
-      project: default
+      project: dev
       source:
         repoURL: https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '{{path.basename}}'
+        path: '/home/dmarom/ws/discount-appset/dev/_chart'
         helm:
           valueFiles:
-            - 'dev/values.yaml'
-            - '{{.valueFiles.1}}'
-            - '{{.valueFiles.2}}'
-            - '{{.valueFiles.3}}'
-            - '{{.valueFiles.4}}'
-            - '{{.valueFiles.5}}'
+            - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-1.yaml'
+            - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-2.yaml'
+            - '{{ (index .Values.appValuesFiles 1) }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'

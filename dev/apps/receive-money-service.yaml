@@ -1,0 +1,9 @@
+appValuesFiles:
+  - config/money-services.yaml
+
+some-example-chart:
+  image: receive-money-service:9000
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi

@@ -1,0 +1,4 @@
+some-example-chart:
+  accountServices:
+    importThing: is this
+    anotherThing: is that

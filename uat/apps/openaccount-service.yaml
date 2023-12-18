@@ -1,0 +1,9 @@
+appValuesFiles:
+  - config/account-services.yaml
+
+some-example-chart:
+  image: openaccount-service:1.2.3
+  resources:
+    limits:
+      cpu: 200m
+      memory: 200Mi

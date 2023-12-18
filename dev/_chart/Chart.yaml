@@ -1,0 +1,9 @@
+apiVersion: v2
+version: 1.0.0
+name: dev-service
+description: This chart exists because multi-app support is no good, so we need this to pull the dependency.
+
+dependencies:
+  - name: some-example-chart
+    repository: file://../../_example_chart
+    version: '>=0-0'
