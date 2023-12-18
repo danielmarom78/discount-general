@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-appset
+  namespace: dev
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+        revision: HEAD
+        files:
+          - path: dev/**/config.yaml
+  template:
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/my-org/my-repo.git'
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - 'common/values.yaml'
+            - 'values.yaml'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{path.basename}}'
