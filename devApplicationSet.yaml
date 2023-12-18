@@ -25,12 +25,12 @@ spec:
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '/home/dmarom/ws/discount-appset/dev/_chart'
+        path: 'dev/_chart'
         helm:
           valueFiles:
             # Env Common valueFiles        
-            - 'dev/config/global-defaults-1.yaml'
-            - 'dev/config/global-defaults-2.yaml'
+            - '../config/global-defaults-1.yaml'
+            - '../config/global-defaults-2.yaml'
             # App valueFiles 
             - '{{ (index .appValuesFiles 0) }}'
 #            {{- if gt (len .appValuesFiles) 1 }}
