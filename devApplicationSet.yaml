@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: dev-appset
-  namespace: dev
+  namespace: openshift-gitops
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -16,13 +16,17 @@ spec:
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/my-org/my-repo.git'
+        repoURL: https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '{{path}}'
+        path: '{{path.basename}}'
         helm:
           valueFiles:
-            - 'common/values.yaml'
-            - 'values.yaml'
+            - 'dev/values.yaml'
+            - '{{.valueFiles.1}}'
+            - '{{.valueFiles.2}}'
+            - '{{.valueFiles.3}}'
+            - '{{.valueFiles.4}}'
+            - '{{.valueFiles.5}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{path.basename}}'
+        namespace: 'dev'
