@@ -12,7 +12,7 @@ spec:
         revision: HEAD
         files:
           - path: dev/apps/*.yaml
-  strategy:
+  # strategy:
   # type: RollingSync
   # rollingSync:
   #   steps:
