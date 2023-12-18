@@ -12,6 +12,11 @@ spec:
         revision: HEAD
         files:
           - path: dev/**/config.yaml
+  strategy:
+  type: RollingSync
+  rollingSync:
+    steps:
+      maxUpdate: 10%        
   template:
     spec:
       project: default
