@@ -5,21 +5,21 @@ metadata:
   namespace: openshift-gitops
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ["missingkey=zero"]
   generators:
     - git:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         revision: HEAD
         files:
           - path: dev/apps/*.yaml
-  # strategy:
-  # type: RollingSync
-  # rollingSync:
-  #   steps:
-  #     maxUpdate: 10%        
+  strategy:
+  type: RollingSync
+  rollingSync:
+    steps:
+      maxUpdate: 10%        
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{ .path.filename }}'
     spec:
       project: default
       source:
@@ -29,16 +29,12 @@ spec:
         helm:
           valueFiles:
             # Env Common valueFiles        
-            - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-1.yaml'
-            - '/home/dmarom/ws/discount-appset/dev/config/global-defaults-2.yaml'
+            - 'dev/config/global-defaults-1.yaml'
+            - 'dev/config/global-defaults-2.yaml'
             # App valueFiles 
-            - '{{ (index .Values.appValuesFiles 0) }}' 
-            - '{{ (index .Values.appValuesFiles 1) }}'
-            - '{{ (index .Values.appValuesFiles 2) }}'
-            - '{{ (index .Values.appValuesFiles 3) }}'
-            - '{{ (index .Values.appValuesFiles 4) }}'
+            - '{{ (index .appValuesFiles 0) }}'            
             # App-config as valueFile
-            - '{{ (printf "%s/%s" path path.filename) }}'
+            - '{{ (printf "%s/%s" .path .path.filename) }}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'
