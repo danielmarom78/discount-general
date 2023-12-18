@@ -33,6 +33,7 @@ spec:
             - 'dev/config/global-defaults-2.yaml'
             # App valueFiles 
             - '{{ (index .appValuesFiles 0) }}'            
+#            - '{{ (index .appValuesFiles 1) }}'
             # App-config as valueFile
             - '{{ (printf "%s/%s" .path .path.filename) }}'
       destination:
