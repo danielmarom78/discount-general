@@ -21,7 +21,7 @@ spec:
     metadata:
       name: '{{path.basename}}'
     spec:
-      project: dev
+      project: default
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
