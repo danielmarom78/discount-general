@@ -33,9 +33,9 @@ spec:
             - '../config/global-defaults-2.yaml'
             # App valueFiles 
             - '{{ (index .appValuesFiles 0) }}'
-            
+
             # {{- if gt (len .appValuesFiles) 1 }}
-            # - '{{ (index .appValuesFiles 1) }}'
+            #- '{{ (index .appValuesFiles 1) }}'
             # {{- end }}
 
             # App-config as valueFile
