@@ -1,5 +1,0 @@
-appValueFiles:
-  - config/global-defaults-1.yaml
-  - config/global-defaults-2.yaml
-
-appValueFilesBasePath: ../
