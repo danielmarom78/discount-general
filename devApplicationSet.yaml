@@ -33,7 +33,7 @@ spec:
             - '../config/global-defaults-2.yaml'
             # App valueFiles 
             - '{{ (index .appValuesFiles 0) }}'
-            - '{{- if gt (len .appValuesFiles) 1 }}{{ (index .appValuesFiles 1) }}{{- else }}ignore.yaml{{- end }}'
+            - '{{- if gt (len .appValuesFiles) 1 }}{{ (index .appValuesFiles 1) }}{{- else }}../config/empty.yaml{{- end }}'
             # App-config as valueFile
             - '{{ (printf "../apps/%s" .path.filename) }}'
       destination:
