@@ -18,6 +18,8 @@ spec:
     steps:
       maxUpdate: 10%        
   template:
+
+  
     metadata:
       name: '{{ .path.filename | trimSuffix ".yaml" }}'
     spec:
@@ -27,17 +29,10 @@ spec:
         targetRevision: HEAD
         path: 'dev/_chart'
         helm:
-          valueFiles:
-            # Env Common valueFiles        
+          valueFiles: 
             - '../config/global-defaults-1.yaml'
             - '../config/global-defaults-2.yaml'
-            # App valueFiles 
-            - '{{- if gt (len .appValuesFiles) 0 }}{{ (index .appValuesFiles 0) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 1 }}{{ (index .appValuesFiles 1) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 2 }}{{ (index .appValuesFiles 2) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 3 }}{{ (index .appValuesFiles 3) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 4 }}{{ (index .appValuesFiles 4) }}{{- else }}../config/empty.yaml{{- end }}'
-            # App-config as valueFile
+            - '{{.appValuesFiles}}'
             - '{{ (printf "../apps/%s" .path.filename) }}'
       destination:
         server: 'https://kubernetes.default.svc'
@@ -46,3 +41,5 @@ spec:
         automated: 
           prune: true
           selfHeal: true
+
+

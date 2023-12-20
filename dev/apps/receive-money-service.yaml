@@ -1,5 +1,4 @@
-appValuesFiles:
-  - ../config/money-services.yaml
+appValuesFiles: ../config/money-services.yaml
 
 some-example-chart:
   image: receive-money-service:9000
