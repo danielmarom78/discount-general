@@ -1,4 +1,4 @@
-appValuesFiles: ../config/account-services1.yaml, ../config/account-services1.yaml
+appValuesFiles: ../config/account-services1.yaml, ../config/account-services2.yaml
 
 some-example-chart:
   image: openaccount-service:1.2.3
