@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - matrix:
-        generators: 
+        generators:
           - git:
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
@@ -14,12 +14,13 @@ spec:
                 - path: 'dev/apps/*.yaml'
               values:
                 appFile: '{{ path.filename }}'
-                appName: '{{ path.filenameNormalized }}'
+                applName: '{{path.filenameNormalized}}'
           - git:
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
                 - path: 'dev/envConfig.yaml'
+
   strategy:
   type: RollingSync
   rollingSync:
@@ -27,7 +28,7 @@ spec:
       maxUpdate: 10%        
   template:  
     metadata:
-      name: '{{appName}}'
+      name: '{{values.applName}}'
     spec:
       project: default
       source:
@@ -38,7 +39,7 @@ spec:
           valueFiles: 
             - '{{envValueFiles}}'
             - '{{appValuesFiles}}'
-            - '../apps/{{appFile}}'
+            - '../apps/{{values.appFile}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'
