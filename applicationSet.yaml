@@ -1,51 +1,54 @@
+
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-appset
+  name: appset
   namespace: openshift-gitops
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=zero"]
   generators:
-    - git:
-        repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-        revision: HEAD
-        files:
-          - path: dev/apps/*.yaml
+    -merge:
+       mergeKeys:
+         - env
+       generators: 
+          - git: #applications
+              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+              revision: HEAD
+              files:
+                - path: /**/apps/*.yaml
+              values:
+                env: "{{path[0]}}"
+          - git: #Enviroments
+              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+              revision: HEAD
+              files:
+                - path: /**/envConfig.yaml
+              values:
+                env: "{{path[0]}}"
   strategy:
   type: RollingSync
   rollingSync:
     steps:
       maxUpdate: 10%        
-  template:
+  template:  
     metadata:
-      name: '{{ .path.filename | trimSuffix ".yaml" }}'
+      name: '{{ path.filename }}'
     spec:
       project: default
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: 'dev/_chart'
+        path: '{{env}}/_chart'
         helm:
-          valueFiles:
-            # Env Common valueFiles        
-            - '{{- if gt (len .envValuesFiles) 0 }}{{ (index .envValuesFiles 0) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .envValuesFiles) 1 }}{{ (index .envValuesFiles 1) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .envValuesFiles) 2 }}{{ (index .envValuesFiles 2) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .envValuesFiles) 3 }}{{ (index .envValuesFiles 3) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .envValuesFiles) 4 }}{{ (index .envValuesFiles 4) }}{{- else }}../config/empty.yaml{{- end }}'
-            # App valueFiles 
-            - '{{- if gt (len .appValuesFiles) 0 }}{{ (index .appValuesFiles 0) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 1 }}{{ (index .appValuesFiles 1) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 2 }}{{ (index .appValuesFiles 2) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 3 }}{{ (index .appValuesFiles 3) }}{{- else }}../config/empty.yaml{{- end }}'
-            - '{{- if gt (len .appValuesFiles) 4 }}{{ (index .appValuesFiles 4) }}{{- else }}../config/empty.yaml{{- end }}'
-            # App-config as valueFile
-            - '{{ (printf "../apps/%s" .path.filename) }}'
+          valueFiles: 
+            - '{{ envValuesFiles }}'
+            - '{{ appValuesFiles }}'
+            - '{{../apps/.path.filename}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'dev'
+        namespace: '{{env}}'
       syncPolicy:
         automated: 
           prune: true
           selfHeal: true
+
+

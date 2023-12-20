@@ -1,3 +1,1 @@
-envValueFiles:
-  - config/global-defaults-1.yaml
-  - config/global-defaults-2.yaml
+envValueFiles: 'config/global-defaults-1.yaml,config/global-defaults-2.yaml'
