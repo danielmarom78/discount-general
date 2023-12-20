@@ -5,11 +5,21 @@ metadata:
   namespace: openshift-gitops
 spec:
   generators:
-    - git:
-        repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-        revision: HEAD
-        files:
-          - path: dev/apps/*.yaml
+    - matrix:
+        generators: 
+          - git:
+              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+              revision: HEAD
+              files:
+                - path: 'dev/apps/*.yaml'
+              values:
+                appFile: '{{ path.filename }}'
+                appName: '{{ path.filenameNormalized }}'
+          - git:
+              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+              revision: HEAD
+              files:
+                - path: 'dev/envConfig.yaml'
   strategy:
   type: RollingSync
   rollingSync:
@@ -17,7 +27,7 @@ spec:
       maxUpdate: 10%        
   template:  
     metadata:
-      name: '{{ path.filename }}'
+      name: '{{appName}}'
     spec:
       project: default
       source:
@@ -26,9 +36,9 @@ spec:
         path: 'dev/_chart'
         helm:
           valueFiles: 
-            - '{{ envValueFiles }}'
-            - '{{ appValuesFiles }}'
-            - '../apps/{{path.filename}}'
+            - '{{envValueFiles}}'
+            - '{{appValuesFiles}}'
+            - '../apps/{{appFile}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'
