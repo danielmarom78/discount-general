@@ -12,18 +12,16 @@ spec:
               revision: HEAD
               files:
                 - path: 'dev/apps/*.yaml'
+              pathParamPrefix: app  
               values:
-                pathParamPrefix: app
-                appFile: '{{path.filename}}'
-                applName: '{{path.filenameNormalized}}'
+                appFile: '{{app.path.filename}}'
+                applName: '{{app.path.filenameNormalized}}'
           - git:
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
                 - path: 'dev/envConfig.yaml'
-              values:
-                pathParamPrefix: env
-
+              pathParamPrefix: env
   strategy:
   type: RollingSync
   rollingSync:
