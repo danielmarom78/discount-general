@@ -1,0 +1,19 @@
+argoNamespace: openshift-gitops # Namespace managed by argocd
+argoProject: default # ArgoCD AppProject where apps will be created
+
+namespace: dev # destination namespace for the workloads
+env: dev 
+
+
+# Helm/Git location for the app of apps
+service:
+  repoURL: https://github.com/danielmarom78/discount.git # RepoURL is the URL to the repository (Git or Helm)
+  revision: main   # tag / branch / semver
+
+serviceValues:
+  uniqueValue: TRIGGER-BY-CHANGING-new
+  job:
+    timeout: 900
+
+pvcSize: 50Mi # Small PVC - each service will write a timestamp file for each rollout
+pvcStorageClass: managed-nfs-storage # RWX storage class for moving files between jobs and services

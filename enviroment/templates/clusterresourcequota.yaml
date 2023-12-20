@@ -1,0 +1,11 @@
+apiVersion: quota.openshift.io/v1
+kind: ClusterResourceQuota
+metadata:
+  name: {{ .Values.namespace }}
+spec:
+  selector:
+    labels:
+      matchLabels:
+        quota/id: {{ .Values.namespace }}
+  quota:
+    hard: {{ .Values.quota | toYaml | nindent 6 }}

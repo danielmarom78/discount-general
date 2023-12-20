@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: discount-app
+spec:
+  destination:
+    name: 'discount'
+    namespace: openshift-gitops
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: environment
+    repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
