@@ -26,10 +26,9 @@ spec:
         path: 'dev/_chart'
         helm:
           valueFiles: 
-            - '../config/global-defaults-1.yaml'
-            - '../config/global-defaults-2.yaml'
+            - '{{ envValueFiles }}'
             - '{{ appValuesFiles }}'
-            - '{{../apps/.path.filename}}'
+            - '../apps/{{path.filename}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'dev'

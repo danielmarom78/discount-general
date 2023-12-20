@@ -5,47 +5,35 @@ metadata:
   name: appset
   namespace: openshift-gitops
 spec:
-  generators:
-    -merge:
-       mergeKeys:
-         - env
-       generators: 
-          - git: #applications
-              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-              revision: HEAD
-              files:
-                - path: /**/apps/*.yaml
-              values:
-                env: "{{path[0]}}"
-          - git: #Enviroments
-              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-              revision: HEAD
-              files:
-                - path: /**/envConfig.yaml
-              values:
-                env: "{{path[0]}}"
-  strategy:
-  type: RollingSync
-  rollingSync:
-    steps:
-      maxUpdate: 10%        
+  generators: 
+    - git:
+        repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+        revision: HEAD
+        files:
+          - path: 'dev/apps/*.yaml'
+          - path: 'dev/envConfig.yaml'
+  # strategy:
+  #   type: RollingSync
+  #   rollingSync:
+  #     steps:
+  #       maxUpdate: 10%        
   template:  
     metadata:
-      name: '{{ path.filename }}'
+      name: '{{path[0]}}-{{path.filenameNormalized}}'
     spec:
       project: default
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '{{env}}/_chart'
+        path: '{{path[0]}}/_chart'
         helm:
           valueFiles: 
-            - '{{ envValuesFiles }}'
-            - '{{ appValuesFiles }}'
-            - '{{../apps/.path.filename}}'
+            - '{{envValuesFiles}}'
+            - '{{appValuesFiles}}'
+            - '{{../apps/path.filename}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{env}}'
+        namespace: '{{path[0]}}'
       syncPolicy:
         automated: 
           prune: true
