@@ -4,7 +4,6 @@ metadata:
   name: discount-app
 spec:
   destination:
-    name: 'discount'
     namespace: openshift-gitops
     server: 'https://kubernetes.default.svc'
   source:
