@@ -2,11 +2,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: {{ printf "%s-job" .Release.Name }}
+  {{- $baseName := printf "%s-job" .Release.Name -}}
+  {{- $truncatedName := (printf "%.58s" $baseName) -}}
+  generateName: {{ $truncatedName }}
   annotations:
-    # argocd.argoproj.io/sync-wave: '1'
     argocd.argoproj.io/hook: PreSync
-    # argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   activeDeadlineSeconds: {{ .Values.job.timeout }}
   backoffLimit: {{ .Values.job.retries }}
