@@ -62,4 +62,4 @@ spec:
       volumes:
       - name: job-outputs
         persistentVolumeClaim:
-          claimName: {{ .Release.namespace }}
+          claimName: common-pvc
