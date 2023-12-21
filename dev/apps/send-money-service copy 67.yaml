@@ -1,0 +1,10 @@
+appValuesFiles: ../config/money-services.yaml
+
+some-example-chart:
+  image: send-money-service:9001
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  replicaCount: 5
+
