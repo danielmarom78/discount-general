@@ -5,7 +5,7 @@ metadata:
 rules:
 - apiGroups: ["quota.openshift.io"]
   resources: ["clusterresourcequotas"]
-  verbs: ["create", "update", "delete"]
+  verbs: ["create", "update", "delete", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
