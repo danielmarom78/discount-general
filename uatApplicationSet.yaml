@@ -38,7 +38,8 @@ spec:
         targetRevision: HEAD
         path: 'uat/_chart'
         helm:
-          valuesObject:                        
+          valuesObject:
+            some-example-chart:                     
               uniqueValue: TRIGGER-BY-CHANGING   
           valueFiles: 
             - '{{envValueFiles}}'
