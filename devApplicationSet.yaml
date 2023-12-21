@@ -38,8 +38,8 @@ spec:
         targetRevision: HEAD
         path: 'dev/_chart'
         helm:
-          valuesObject:            
-              uniqueValue: TRIGGER-BY-CHANGING      
+          valuesObject:                        
+              uniqueValue: TRIGGER-BY-CHANGING    
           valueFiles: 
             - '{{envValueFiles}}'
             - '{{appValuesFiles}}'
