@@ -2,7 +2,6 @@ argoNamespace: openshift-gitops # Namespace managed by argocd
 argoProject: default # ArgoCD AppProject where apps will be created
 
 namespace: discount # destination namespace for the workloads
-env: dev 
 
 
 # Helm/Git location for the app of apps
