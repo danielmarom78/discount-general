@@ -4,9 +4,9 @@ kind: Job
 metadata:
   generateName: {{ printf "%s-job" .Release.Name }}
   annotations:
-    # argocd.argoproj.io/sync-wave: '1'
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/sync-wave: '1'
+    # argocd.argoproj.io/hook: PreSync
+    # argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   activeDeadlineSeconds: {{ .Values.job.timeout }}
   backoffLimit: {{ .Values.job.retries }}
