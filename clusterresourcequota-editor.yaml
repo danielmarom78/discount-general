@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: clusterresourcequota-editor
+rules:
+- apiGroups: ["quota.openshift.io"]
+  resources: ["clusterresourcequotas"]
+  verbs: ["create", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: clusterresourcequota-editor-binding
+subjects:
+- kind: ServiceAccount
+  name: openshift-gitops-argocd-application-controller
+  namespace: openshift-gitops
+roleRef:
+  kind: ClusterRole
+  name: clusterresourcequota-editor
+  apiGroup: rbac.authorization.k8s.io
