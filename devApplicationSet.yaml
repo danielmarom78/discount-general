@@ -46,7 +46,7 @@ spec:
             - '../apps/{{values.appFile}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'dev'
+        namespace: 'discount'
       syncPolicy:
         automated: 
           prune: true

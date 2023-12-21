@@ -38,7 +38,7 @@ spec:
         targetRevision: HEAD
         path: 'uat/_chart'
         helm:
-          valuesObject:            
+          values: |                        
               uniqueValue: TRIGGER-BY-CHANGING      
           valueFiles: 
             - '{{envValueFiles}}'
@@ -46,7 +46,7 @@ spec:
             - '../apps/{{values.appFile}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'dev'
+        namespace: 'discount'
       syncPolicy:
         automated: 
           prune: true
