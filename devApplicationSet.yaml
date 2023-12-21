@@ -24,7 +24,7 @@ spec:
                 - path: 'dev/envConfig.yaml'
               pathParamPrefix: env
   strategy:
-  type: RollingSync
+    type: RollingSync
   rollingSync:
     steps:
       maxUpdate: 10%        
