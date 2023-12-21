@@ -16,3 +16,5 @@ serviceValues:
 
 pvcSize: 50Mi # Small PVC - each service will write a timestamp file for each rollout
 pvcStorageClass: managed-nfs-storage # RWX storage class for moving files between jobs and services
+
+quota: 400
