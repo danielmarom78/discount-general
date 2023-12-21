@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: {{ printf "%.58s-job" .Release.Name }}
+  generateName: {{ printf "%.51s-job" .Release.Name }}
   annotations:
     argocd.argoproj.io/hook: PreSync
 spec:
