@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ printf "%s-job" .Release.Name }}
+  generateName: {{ printf "%s-job" .Release.Name }}
   annotations:
     argocd.argoproj.io/sync-wave: '1'
 spec:
