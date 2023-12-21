@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-appset
+  name: uat-appset
   namespace: openshift-gitops
 spec:
   generators:
@@ -12,7 +12,7 @@ spec:
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
-                - path: 'dev/apps/*.yaml'
+                - path: 'uat/apps/*.yaml'
               pathParamPrefix: app  
               values:
                 appFile: '{{app.path.filename}}'
@@ -21,7 +21,7 @@ spec:
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
-                - path: 'dev/envConfig.yaml'
+                - path: 'uat/envConfig.yaml'
               pathParamPrefix: env
   strategy:
     type: RollingSync
@@ -36,7 +36,7 @@ spec:
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: 'dev/_chart'
+        path: 'uat/_chart'
         helm:
           valuesObject:            
               uniqueValue: TRIGGER-BY-CHANGING      

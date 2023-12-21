@@ -1,5 +1,4 @@
-appValuesFiles:
-  - config/account-services.yaml
+appValuesFiles: '../config/account-services1.yaml,../config/account-services2.yaml'
 
 some-example-chart:
   image: closeaccount-service:1.2.3
