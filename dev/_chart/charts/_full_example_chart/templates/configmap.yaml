@@ -4,9 +4,10 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}
   labels: 
-    argocd.argoproj.io/hook: PreSync
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     checksum/config: {{ $uniqueValue | trunc 44}}
+  annotations:
+    argocd.argoproj.io/hook: PreSync
 data:
   values: {{ .Values | toJson | squote }}
 
