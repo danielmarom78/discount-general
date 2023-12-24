@@ -25,7 +25,7 @@ spec:
       containers:
       - name: service
         image: {{ .Values.imageName }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
 
         {{- with .Values.service.mainCommandArgs }}
         args: {{ toJson . }}
