@@ -7,7 +7,7 @@ spec:
     namespace: openshift-gitops
     server: 'https://kubernetes.default.svc'
   source:
-    path: devAppSet
+    path: app-set/dev
     repoURL: 'https://github.com/danielmarom78/discount-appset.git'
     targetRevision: HEAD
   sources: []
