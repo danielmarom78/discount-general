@@ -18,4 +18,4 @@ quota:
   #limits.memory: 
   #requests.cpu:
   #requests.memory:
-  pods: 335
+  pods: 400
