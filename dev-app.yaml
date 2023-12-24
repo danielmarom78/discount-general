@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: enviroment
+  name: dev
 spec:
   destination:
     namespace: openshift-gitops
     server: 'https://kubernetes.default.svc'
   source:
-    path: dev-appset
+    path: devAppSet
     repoURL: 'https://github.com/danielmarom78/discount-appset.git'
     targetRevision: HEAD
   sources: []
