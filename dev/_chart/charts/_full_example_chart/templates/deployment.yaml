@@ -5,6 +5,7 @@ metadata:
   name: {{ .Release.Name }}
   annotations:
     argocd.argoproj.io/sync-wave: '10'
+    deploy-name: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
 spec:
   replicas: 1
   revisionHistoryLimit: 0
@@ -17,6 +18,7 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ $uniqueValue }}
+        deploy-name: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
       labels:
         app: {{ .Release.Name }}
 

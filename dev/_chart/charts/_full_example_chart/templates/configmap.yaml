@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}
   labels: 
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    cm-name: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
 data:
   values: {{ .Values | toJson | squote }}
 
