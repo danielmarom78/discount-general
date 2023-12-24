@@ -25,9 +25,9 @@ spec:
               pathParamPrefix: env
   strategy:
     type: RollingSync
-  rollingSync:
-    steps:
-      maxUpdate: 10%        
+    rollingSync:
+      steps:
+        maxUpdate: 10%        
   template:  
     metadata:
       name: '{{values.applName}}'
