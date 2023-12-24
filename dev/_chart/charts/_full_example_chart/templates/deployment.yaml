@@ -20,7 +20,7 @@ spec:
       labels:
         app: {{ .Release.Name }} 
         unique: {{ .Values.uniqueValue }}
-
+        type: deployment
     spec:
       containers:
       - name: service
