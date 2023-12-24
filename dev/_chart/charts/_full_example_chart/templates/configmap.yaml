@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}
   labels: 
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    checksum/config: {{ $uniqueValue }}
+    checksum/config: {{ $uniqueValue | trunc 44}}
 data:
   values: {{ .Values | toJson | squote }}
 
