@@ -1,3 +1,4 @@
+{{- $uniqueValue := sha256sum .Values.uniqueValue  -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5,6 +6,7 @@ metadata:
   labels: 
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     cm-name: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
+    checksum/config: {{ $uniqueValue }}
 data:
   values: {{ .Values | toJson | squote }}
 
