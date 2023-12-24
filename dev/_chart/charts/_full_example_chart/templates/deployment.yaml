@@ -18,7 +18,8 @@ spec:
       annotations:
         checksum/config: {{ $uniqueValue }}
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Release.Name }} 
+        unique: {{ .Values.uniqueValue }}
 
     spec:
       containers:
