@@ -40,7 +40,7 @@ spec:
         helm:
           valuesObject:
             some-example-chart:                     
-              uniqueValue: TRIGGER-BY-CHANGING
+              uniqueValue: TRIGGER-BY-CHANGING-new
           valueFiles: 
             - '{{envValueFiles}}'
             - '{{appValuesFiles}}'

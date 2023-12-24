@@ -5,5 +5,5 @@ description: This chart exists because multi-app support is no good, so we need 
 
 dependencies:
   - name: some-example-chart
-    repository: file://../../_full_example_chart
+    repository: file://charts/_full_example_chart
     version: '>=0-0'
