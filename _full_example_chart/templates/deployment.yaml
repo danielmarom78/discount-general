@@ -18,13 +18,14 @@ spec:
       annotations:
         checksum/config: {{ $uniqueValue }}
       labels:
-        app: {{ .Release.Name }}
-
+        app: {{ .Release.Name }} 
+        unique: {{ .Values.uniqueValue }}
+        type: deployment
     spec:
       containers:
       - name: service
         image: {{ .Values.imageName }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
 
         {{- with .Values.service.mainCommandArgs }}
         args: {{ toJson . }}
