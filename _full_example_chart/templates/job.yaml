@@ -22,7 +22,7 @@ spec:
       containers:
       - name: job
         image: {{ .Values.imageName }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
 
         {{- with .Values.job.commandArgs }}
         args: {{ toJson . }}
