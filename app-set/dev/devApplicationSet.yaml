@@ -7,7 +7,7 @@ spec:
   generators:
     - matrix:
         generators:
-          - git:
+          - git: #App
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
@@ -16,7 +16,7 @@ spec:
               values:
                 appFile: '{{app.path.filename}}'
                 applName: '{{app.path.filenameNormalized}}'
-          - git:
+          - git: #Env
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
               files:
