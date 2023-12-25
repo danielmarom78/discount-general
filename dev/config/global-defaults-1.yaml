@@ -1,5 +1,5 @@
 some-example-chart:
   common:
     1: true
-  uniqueValue: 'bla-bla'
+  uniqueValue: 'bla-bla-new'
 
