@@ -21,7 +21,7 @@ spec:
         app: {{ .Release.Name }} 
         unique: {{ .Values.uniqueValue }}
         type: deployment
-        chartVer: {{.Chart.Version | quote}}
+        # chartVer: {{.Chart.Version | quote}}
     spec:
       containers:
       - name: service
