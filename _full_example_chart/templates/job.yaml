@@ -4,7 +4,8 @@ kind: Job
 metadata:
   generateName: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: '1'
+    argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
     job-name: {{ printf "%.39s-job" .Release.Name | trunc 44 }}
     checksum/config: {{ $uniqueValue }}
