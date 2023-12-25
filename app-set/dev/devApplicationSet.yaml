@@ -31,7 +31,7 @@ spec:
               operator: In
               values:
                 - env-dev
-          maxUpdate: 10%     
+          maxUpdate: 5%     
   template:  
     metadata:
       name: '{{values.applName}}'
