@@ -1,3 +1,4 @@
 some-example-chart:
   common:
     2: true
+    3: false
