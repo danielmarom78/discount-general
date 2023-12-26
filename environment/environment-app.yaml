@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: enviroment
+  name: environment
 spec:
   destination:
     namespace: openshift-gitops
