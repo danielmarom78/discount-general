@@ -54,3 +54,7 @@ spec:
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'discount'
+      syncPolicy:
+        automated: 
+          prune: true
+          selfHeal: true
