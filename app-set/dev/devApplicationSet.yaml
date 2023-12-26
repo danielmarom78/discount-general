@@ -28,16 +28,15 @@ spec:
       steps:
         - matchExpressions:
             - key: envLabel
-              operator: In
+              operator: NotIn
               values:
-                - env-dev
-                - 'env-dev'
+                - xxx
           maxUpdate: 5%     
   template:  
     metadata:
       name: '{{values.applName}}'
       labels:
-        envLabel: 'env-dev'
+        envLabel: env-dev
     spec:
       project: default
       source:
