@@ -28,10 +28,10 @@ spec:
       steps:
         - matchExpressions:
             - key: envLabel
-              operator: In
+              operator: NotIn
               values:
-                - env-uat
-          maxUpdate: 10%     
+                - xxx
+          maxUpdate: 1%      
   template:  
     metadata:
       name: '{{values.applName}}'
