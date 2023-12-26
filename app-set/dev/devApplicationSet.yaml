@@ -31,7 +31,7 @@ spec:
               operator: NotIn
               values:
                 - xxx
-          maxUpdate: 5%     
+          maxUpdate: 15%     
   template:  
     metadata:
       name: '{{values.applName}}'
