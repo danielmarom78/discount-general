@@ -4,9 +4,9 @@ metadata:
   name: dev-appset
   namespace: openshift-gitops
 spec:
-  # ignoreApplicationDifferences:
-  #   - jsonPointers:
-  #       - /spec/syncPolicy
+  ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/syncPolicy
   generators:
     - matrix:
         generators:
@@ -25,16 +25,16 @@ spec:
               files:
                 - path: 'uat/envConfig.yaml'
               pathParamPrefix: env
-  strategy:
-    type: RollingSync
-    rollingSync:
-      steps:
-        - matchExpressions:
-            - key: envLabel
-              operator: NotIn
-              values:
-                - xxx
-          maxUpdate: 1%      
+  # strategy:
+  #   type: RollingSync
+  #   rollingSync:
+  #     steps:
+  #       - matchExpressions:
+  #           - key: envLabel
+  #             operator: NotIn
+  #             values:
+  #               - xxx
+  #         maxUpdate: 1%      
   template:  
     metadata:
       name: '{{values.applName}}'
