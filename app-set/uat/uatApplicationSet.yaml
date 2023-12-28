@@ -25,16 +25,16 @@ spec:
               files:
                 - path: 'uat/envConfig.yaml'
               pathParamPrefix: env
-  # strategy:
-  #   type: RollingSync
-  #   rollingSync:
-  #     steps:
-  #       - matchExpressions:
-  #           - key: envLabel
-  #             operator: NotIn
-  #             values:
-  #               - xxx
-  #         maxUpdate: 1%      
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: envLabel
+              operator: NotIn
+              values:
+                - xxx
+          maxUpdate: 1%      
   template:  
     metadata:
       name: '{{values.applName}}'
