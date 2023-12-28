@@ -4,6 +4,9 @@ metadata:
   name: dev-appset
   namespace: openshift-gitops
 spec:
+  ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/syncPolicy
   generators:
     - matrix:
         generators:
@@ -33,9 +36,6 @@ spec:
                 - xxx
           maxUpdate: 1%      
   template:  
-    ignoreApplicationDifferences:
-    - jsonPointers:
-        - /spec/syncPolicy
     metadata:
       name: '{{values.applName}}'
       labels:
