@@ -33,6 +33,9 @@ spec:
                 - xxx
           maxUpdate: 1%      
   template:  
+    ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/syncPolicy
     metadata:
       name: '{{values.applName}}'
       labels:
