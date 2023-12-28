@@ -33,7 +33,6 @@ spec:
                 - xxx
           maxUpdate: 1%      
   template:  
-    ignoreApplicationDifferences: true
     metadata:
       name: '{{values.applName}}'
       labels:
