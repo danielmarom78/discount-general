@@ -12,8 +12,8 @@ resources:
   job:
     limits:
       cpu: 1
-      memory: 4
+      memory: 4Gi
   deployment:
     limits:
       cpu: 1
-      memory: 1
+      memory: 1Gi
