@@ -10,9 +10,9 @@ some-example-chart:
 resources:
   job:
     limits:
-      cpu: 10m
+      cpu: 4
       memory: 32Mi
   deployment:
     limits:
-      cpu: 10m
+      cpu: 4
       memory: 32Mi
