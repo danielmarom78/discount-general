@@ -1,3 +1,6 @@
+{{- $bucketCpuCounts := list 0 0 0 0 0 0 0 0 0 0 -}}
+{{- $SurgeCpu := 5 -}}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -16,6 +19,8 @@ spec:
               values:
                 appFile: '{{app.path.filename}}'
                 applName: '{{app.path.filenameNormalized}}'
+                jobCPU: '{{job.resources.limits.cpu}}'
+                deploymentCPU: '{{deployment.resources.limits.cpu}}'
           - git: #Env
               repoURL: 'https://github.com/danielmarom78/discount-appset.git'
               revision: HEAD
@@ -27,11 +32,75 @@ spec:
     rollingSync:
       steps:
         - matchExpressions:
-            - key: envLabel
-              operator: NotIn
+            - key: SyncWave
+              operator: In
               values:
-                - xxx
-          maxUpdate: 15%     
+                - 1
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 2
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 3
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 4
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 5
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 6
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 7
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 8
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 9
+          maxUpdate: 100%
+          steps:
+        - matchExpressions:
+            - key: SyncWave
+              operator: In
+              values:
+                - 10
+          maxUpdate: 100%
+
   template:  
     metadata:
       name: '{{values.applName}}'
