@@ -1,0 +1,19 @@
+appValuesFiles: '../config/account-services1.yaml,../config/account-services2.yaml'
+
+some-example-chart:
+  image: closeaccount-service:1.2.3
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  replicaCount: 0
+
+resources:
+  job:
+    limits:
+      cpu: 2
+      memory: 32Mi
+  deployment:
+    limits:
+      cpu: 2
+      memory: 32Mi
