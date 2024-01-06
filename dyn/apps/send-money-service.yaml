@@ -11,9 +11,9 @@ some-example-chart:
 resources:
   job:
     limits:
-      cpu: 2
-      memory: 2Gi
+      cpu: 10m
+      memory: 32Mi
   deployment:
     limits:
-      cpu: 2
-      memory: 2Gi
+      cpu: 10m
+      memory: 32Mi
