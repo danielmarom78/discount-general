@@ -1,5 +1,5 @@
 apiVersion: quota.openshift.io/v1
-kind: ClusterResourceQuota
+kind: ResourceQuota
 metadata:
   name: {{ .Values.namespace }}
 spec:
