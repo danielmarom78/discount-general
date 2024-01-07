@@ -14,8 +14,8 @@ pvcSize: 50Mi # Small PVC - each service will write a timestamp file for each ro
 pvcStorageClass: managed-nfs-storage # RWX storage class for moving files between jobs and services
 
 quota:
-  #limits.cpu:
-  #limits.memory: 
+  limits.cpu: 8
+  limits.memory: 8Gi
   #requests.cpu:
   #requests.memory:
-  pods: 400
+  
