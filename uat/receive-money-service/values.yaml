@@ -4,10 +4,8 @@ some-example-chart:
       limits:
         cpu: 100m
         memory: 100Mi
-      replicaCount: 2
   job:
     resources: 
       limits:
         cpu: 100m
         memory: 100Mi
-      replicaCount: 2
