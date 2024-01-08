@@ -8,12 +8,11 @@ spec:
     - jsonPointers:
         - /spec/syncPolicy
   generators:
-    - git: #Apps
+    - git: 
         repoURL: 'https://github.com/danielmarom78/discount-general.git'
         revision: HEAD
         directories:
         - path: 'uat/*'              
- #       pathParamPrefix: app  
   strategy:
     type: RollingSync
     rollingSync:
@@ -35,13 +34,10 @@ spec:
         repoURL: 'https://github.com/danielmarom78/discount-general.git'
         targetRevision: HEAD
         path: '{{path}}'
-        # helm:
-        #   valuesObject:
-        #     some-example-chart:                     
-        #       uniqueValue: TRIGGER-BY-CHANGING-NEW
-        # valueFiles: 
-        #   # - '../envValues.yaml' #EnvValues
-        #   - '{{path}}/Values.yaml' #AppValues
+        helm:
+          valueFiles: 
+            - '../envValues.yaml' #EnvValues
+            - 'values.yaml' #AppValues
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'discount'
