@@ -8,7 +8,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: environment
-    repoURL: 'https://github.com/danielmarom78/discount-appset.git'
+    repoURL: 'https://github.com/danielmarom78/discount-general.git'
     targetRevision: HEAD
   sources: []
   project: default
