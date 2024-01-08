@@ -1,5 +1,3 @@
-{{- $env := uat  -}}
----
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -14,7 +12,7 @@ spec:
         repoURL: 'https://github.com/danielmarom78/discount-general.git'
         revision: HEAD
         directories:
-        - path: '$env/*'              
+        - path: 'uat/*'              
   strategy:
     type: RollingSync
     rollingSync:
@@ -29,7 +27,7 @@ spec:
     metadata:
       name: '{{path.basenameNormalized}}'
       labels:
-        envLabel: 'env-$env'
+        envLabel: 'env-uat'
     spec:
       project: default
       source:
