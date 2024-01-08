@@ -35,13 +35,13 @@ spec:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
         path: '{{.path.path}}'
-        helm:
-          valuesObject:
-            some-example-chart:                     
-              uniqueValue: TRIGGER-BY-CHANGING-NEW
-          valueFiles: 
-            - '../envValues.yaml' #EnvValues
-            - 'Values.yaml' #AppValues
+        # helm:
+        #   valuesObject:
+        #     some-example-chart:                     
+        #       uniqueValue: TRIGGER-BY-CHANGING-NEW
+        #   valueFiles: 
+        #     - '../envValues.yaml' #EnvValues
+        #     - 'Values.yaml' #AppValues
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'discount'
