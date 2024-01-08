@@ -30,15 +30,13 @@ spec:
         {{- with .Values.job.command }}
         command: {{ toJson . }}
         {{- end }}
+        {{- with .Values.job.resources }}
+        resources: {{ toJson . }}
+        {{- end }}
 
         env:
         - name: {{ .Values.jobOutputFileEnvVar }}
           value: {{ printf "/mnt/job-outputs/%s-%s" .Release.Name $uniqueValue}}
-
-        resources:
-          limits:
-            cpu: 10m
-            memory: 32Mi  
 
         volumeMounts:
          - name: job-outputs
