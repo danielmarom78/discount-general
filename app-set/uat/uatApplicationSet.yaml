@@ -34,7 +34,7 @@ spec:
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '{{path.path}}'
+        path: '{{path}}'
         # helm:
         #   valuesObject:
         #     some-example-chart:                     
