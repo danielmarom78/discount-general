@@ -26,7 +26,7 @@ spec:
           maxUpdate: 1%      
   template:  
     metadata:
-      name: '{{path.basenameNormalized}}'
+      name: '{{.path.basenameNormalized}}'
       labels:
         envLabel: 'env-uat'
     spec:
@@ -34,7 +34,7 @@ spec:
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: '{{path.path}}'
+        path: '{{.path.path}}'
         helm:
           valuesObject:
             some-example-chart:                     
