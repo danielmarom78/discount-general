@@ -13,7 +13,7 @@ spec:
         revision: HEAD
         directories:
         - path: 'uat/*'              
-        pathParamPrefix: app  
+ #       pathParamPrefix: app  
   strategy:
     type: RollingSync
     rollingSync:
