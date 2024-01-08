@@ -7,7 +7,7 @@ spec:
     namespace: openshift-gitops
     server: 'https://kubernetes.default.svc'
   source:
-    path: environment
+    path: tenent-setup
     repoURL: 'https://github.com/danielmarom78/discount-general.git'
     targetRevision: HEAD
   sources: []
