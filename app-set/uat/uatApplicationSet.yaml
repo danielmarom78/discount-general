@@ -40,8 +40,8 @@ spec:
         #     some-example-chart:                     
         #       uniqueValue: TRIGGER-BY-CHANGING-NEW
         valueFiles: 
-          - '../envValues.yaml' #EnvValues
-          - 'Values.yaml' #AppValues
+          # - '../envValues.yaml' #EnvValues
+          - '{{path}}/Values.yaml' #AppValues
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'discount'
