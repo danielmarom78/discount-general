@@ -1,8 +1,13 @@
 some-example-chart:
-  image: send-money-service:9001
-  resources:
-    limits:
-      cpu: 100m
-      memory: 100Mi
-  replicaCount: 5
-
+  service:    
+    resources: 
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      replicaCount: 2
+  job:
+    resources: 
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      replicaCount: 2

@@ -1,6 +1,13 @@
 some-example-chart:
-  image: openaccount-service:1.2.3
-  resources:
-    limits:
-      cpu: 200m
-      memory: 200Mi
+  service:    
+    resources: 
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      replicaCount: 2
+  job:
+    resources: 
+      limits:
+        cpu: 100m
+        memory: 100Mi
+      replicaCount: 2
