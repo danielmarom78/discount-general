@@ -1,1 +1,4 @@
-envValueFiles: '../config/global-defaults-1.yaml,../config/global-defaults-2.yaml'
+some-example-chart:
+  common:
+    1: true
+  uniqueValue: 'bla-bla-new4'

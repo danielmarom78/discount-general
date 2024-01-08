@@ -8,23 +8,12 @@ spec:
     - jsonPointers:
         - /spec/syncPolicy
   generators:
-    - matrix:
-        generators:
-          - git: #App
-              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-              revision: HEAD
-              files:
-                - path: 'uat/apps/*.yaml'
-              pathParamPrefix: app  
-              values:
-                appFile: '{{app.path.filename}}'
-                applName: '{{app.path.filenameNormalized}}'
-          - git: #Env
-              repoURL: 'https://github.com/danielmarom78/discount-appset.git'
-              revision: HEAD
-              files:
-                - path: 'uat/envConfig.yaml'
-              pathParamPrefix: env
+    - git: #Apps
+        repoURL: 'https://github.com/danielmarom78/discount-general.git'
+        revision: HEAD
+        directories:
+        - path: 'uat/*'              
+        pathParamPrefix: app  
   strategy:
     type: RollingSync
     rollingSync:
@@ -37,7 +26,7 @@ spec:
           maxUpdate: 1%      
   template:  
     metadata:
-      name: '{{values.applName}}'
+      name: '{{.path.basenameNormalized}}'
       labels:
         envLabel: 'env-uat'
     spec:
@@ -45,15 +34,14 @@ spec:
       source:
         repoURL: 'https://github.com/danielmarom78/discount-appset.git'
         targetRevision: HEAD
-        path: 'uat/_chart'
+        path: '{{app.path.path}}'
         helm:
           valuesObject:
             some-example-chart:                     
-              uniqueValue: TRIGGER-BY-CHANGING-NEW1111
+              uniqueValue: TRIGGER-BY-CHANGING-NEW
           valueFiles: 
-            - '{{envValueFiles}}'
-            - '{{appValuesFiles}}'
-            - '../apps/{{values.appFile}}'
+            - '{../{envValues.yaml}}' #EnvValues
+            - '{{{Values.yaml}}' #AppValues
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'discount'
