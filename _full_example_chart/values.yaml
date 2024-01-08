@@ -1,6 +1,6 @@
 imageName: registry.access.redhat.com/ubi8/ubi-minimal:latest
 jobOutputFileEnvVar: JOB_OUTPUT
-uniqueValue: hello world
+uniqueValue: hello-world
 
 
 service:

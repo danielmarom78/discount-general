@@ -1,5 +1,3 @@
-appValuesFiles: ../config/money-services.yaml
-
 some-example-chart:
   image: send-money-service:9001
   resources:

@@ -1,5 +1,3 @@
-appValuesFiles: ../config/money-services.yaml
-
 some-example-chart:
   image: receive-money-service:9000
   resources:

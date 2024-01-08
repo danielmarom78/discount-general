@@ -1,5 +1,3 @@
-appValuesFiles: ../config/account-services1.yaml
-
 some-example-chart:
   image: openaccount-service:1.2.3
   resources:
