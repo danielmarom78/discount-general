@@ -1,4 +1,4 @@
 some-example-chart:
   common:
     1: true
-  uniqueValue: 'bla-bla-new4'
+  uniqueValue: 'EnvironmentUniqueValue'
