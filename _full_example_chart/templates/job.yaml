@@ -35,6 +35,11 @@ spec:
         - name: {{ .Values.jobOutputFileEnvVar }}
           value: {{ printf "/mnt/job-outputs/%s-%s" .Release.Name $uniqueValue}}
 
+        resources:
+          limits:
+            cpu: 10m
+            memory: 32Mi  
+
         volumeMounts:
          - name: job-outputs
            mountPath: /mnt/job-outputs
