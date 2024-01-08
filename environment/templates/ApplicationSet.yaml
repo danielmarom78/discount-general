@@ -14,7 +14,7 @@ spec:
   generators:
     - git: 
         repoURL: '{{$repoURL}}'
-        revision: master
+        revision: HEAD
         directories:
         - path: '{{$env}}/*'              
   strategy:
@@ -36,7 +36,7 @@ spec:
       project: default
       source:
         repoURL: '{{ `{{$repoURL}}` }}'
-        targetRevision: master
+        targetRevision: HEAD
         path: '{{ `{{path}}` }}'
         helm:
           valueFiles: 
