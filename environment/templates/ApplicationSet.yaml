@@ -1,0 +1,51 @@
+{{- $env := uat  -}}
+{{- $repoURL := https://github.com/danielmarom78/discount-general.git  -}}
+{{- $namespace := discount  -}}
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-appset
+  namespace: openshift-gitops
+spec:
+  ignoreApplicationDifferences:
+    - jsonPointers:
+        - /spec/syncPolicy
+  generators:
+    - git: 
+        repoURL: '{{$repoURL}}'
+        revision: master
+        directories:
+        - path: '{{$env}}/*'              
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: envLabel
+              operator: In
+              values:
+                - 'env-{{$env}}'
+          maxUpdate: 10%      
+  template:  
+    metadata:
+      name: '{{ `{{path.basenameNormalized}}` }}'
+      labels:
+        envLabel: 'env-{{$env}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{ `{{$repoURL}}` }}'
+        targetRevision: master
+        path: '{{ `{{path}}` }}'
+        helm:
+          valueFiles: 
+            - '../envValues.yaml' #EnvValues
+            - 'values.yaml' #AppValues
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{$namespace}}'
+      syncPolicy:
+        automated: 
+          prune: true
+          selfHeal: true
