@@ -19,3 +19,5 @@ quota:
   #requests.cpu:
   #requests.memory:
   
+env: uat
+repoURL: https://github.com/danielmarom78/discount-general.git

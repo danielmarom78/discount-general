@@ -1,6 +1,6 @@
-{{- $env := "uat"  -}}
-{{- $repoURL := "https://github.com/danielmarom78/discount-general.git"  -}}
-{{- $namespace := "discount"  -}}
+{{- $env := .Values.env  -}}
+{{- $repoURL := .Values.repoURL  -}}
+{{- $namespace := .Values.namespace  -}}
 
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
