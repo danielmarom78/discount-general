@@ -19,15 +19,15 @@ spec:
       steps:
         - matchExpressions:
             - key: envLabel
-              operator: NotIn
+              operator: In
               values:
-                - xxx
-          maxUpdate: 1%      
+                - env-uat
+          maxUpdate: 10%      
   template:  
     metadata:
       name: '{{path.basenameNormalized}}'
       labels:
-        envLabel: 'env-uat'
+        envLabel: env-uat
     spec:
       project: default
       source:
